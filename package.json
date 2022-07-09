@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy:gp": "ng build --base-href=/ulstu-cardio-analytical/ && angular-cli-ghpages --dir=dist/ulstu-cardio-analytical"
   },
   "private": true,
   "dependencies": {
