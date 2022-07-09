@@ -1,1 +1,9 @@
-<p>list works!</p>
+<h1>Список пользователей</h1>
+<div>
+    <input placeholder="поиск" [(ngModel)]="query" />
+    <button (click)="addUser()">Добавить</button>
+</div>
+<div class="user" *ngFor="let user of users$ | async | ufilter:query">
+    ФИО: {{user.fio}} <br />
+    ФИО врача: {{user.doctorFio}}
+</div>

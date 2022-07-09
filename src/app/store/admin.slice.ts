@@ -1,13 +1,19 @@
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { initialAdminState, UserSearchData } from './store.model';
+import { initialAdminState, UserBaseInfo } from './store.model';
 
 const adminSlice = createSlice({
-    name: 'task',
+    name: 'admin',
     initialState: initialAdminState,
     reducers: {
-        users: (state, action: PayloadAction<{ users: UserSearchData[] }>) => {
+        setUsers: (state, action: PayloadAction<{ users: UserBaseInfo[] }>) => {
             state.users = action.payload.users;
+        },
+        addUser: (state, action: PayloadAction<{ user: UserBaseInfo }>) => {
+            state.users = [
+                ...state.users,
+                action.payload.user
+            ]
         }
     }
 });

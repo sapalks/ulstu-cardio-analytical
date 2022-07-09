@@ -1,28 +1,36 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
-import * as adminStore from './store/admin.slice';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LeftMenuComponent } from './left-menu/left-menu.component';
-import { ListComponent } from './list/list.component';
-import { PnfComponent } from './pnf/pnf.component';
+import * as adminStore from './store/admin.slice';
+import * as components from './components';
+import * as pipes from './pipe';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LeftMenuComponent,
-    ListComponent,
-    PnfComponent
+    components.AppComponent,
+    components.ListComponent,
+    components.PnfComponent,
+    components.AddUserDialogComponent,
+
+    pipes.UserSearchPipe,
   ],
   imports: [
     BrowserModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
+    MaterialModule,
     StoreModule.forRoot({}),
     StoreModule.forFeature(adminStore.name, adminStore.reducer),
+    BrowserAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [components.AppComponent]
 })
 export class AppModule { }

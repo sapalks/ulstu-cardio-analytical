@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListComponent } from './list/list.component';
-import { PnfComponent } from './pnf/pnf.component';
+import * as components from './components';
 
-const routes: Routes = [
-  { path: 'home', component: ListComponent },
+export const routes: Routes = [
+  { path: 'home', component: components.ListComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', component: PnfComponent },
+  { path: '**', component: components.PnfComponent },
 ];
 
 @NgModule({
