@@ -18,6 +18,9 @@ import { MaterialModule } from './material';
     components.AddUserDialogComponent,
     components.HeaderComponent,
     pipes.UserSearchPipe,
+    components.ProfileComponent,
+    components.ApproveComponent,
+    components.UserLeftColumnComponent,
   ],
   imports: [
     BrowserModule,
