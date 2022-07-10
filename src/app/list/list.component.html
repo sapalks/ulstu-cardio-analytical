@@ -1,9 +1,35 @@
-<h1>Список пользователей</h1>
-<div>
-    <input placeholder="поиск" [(ngModel)]="query" />
-    <button (click)="addUser()">Добавить</button>
-</div>
-<div class="user" *ngFor="let user of users$ | async | ufilter:query">
-    ФИО: {{user.fio}} <br />
-    ФИО врача: {{user.doctorFio}}
+<div class="list">
+    <h1>Список пользователей</h1>
+    <div class="search">
+        <mat-form-field class="search__form" appearance="outline">
+            <mat-label>Поиск</mat-label>
+            <input matInput placeholder="Поиск" [(ngModel)]="query">
+        </mat-form-field>
+        <button (click)="addUser()" mat-raised-button color="primary" class="search__btn">Добавить</button>
+    </div>
+    <div class="users">
+        <div class="users__item" *ngFor="let user of users$ | async | ufilter:query">
+            <div class="users__item__main-info">
+                {{user.fio}} ({{user.born | date: 'dd.MM.yyyy'}})
+            </div>
+            <div class="users__item__additional-info">
+                <div class="users__item__column">
+                    Регион: <b>{{user.region}}</b><br />
+                    Класс пациента: <b>{{user.clientClass}}</b>
+                </div>
+                <div class="users__item__column">
+                    Даты последнего обращения: <b>{{user.lastRequestAt | date: 'hh:mm dd.MM.yyyy'}}</b><br/>
+                    Количество обращений: <b>{{user.requestCount}}</b>
+                </div>
+                <div class="users__item__column">
+                    Количество сгенерированных рекомендаций: <b>{{user.recommendationCount}}</b><br/>
+                    Оценка сгенерированных рекомендаций: <b>{{user.recommendationAvgRating}}</b>
+                </div>
+                <div class="users__item__column">
+                    ФИО курирующего врача: <b>{{user.doctorFio}}</b><br/>
+                    Почта курирующего врача: <b>{{user.doctorEmail}}</b>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

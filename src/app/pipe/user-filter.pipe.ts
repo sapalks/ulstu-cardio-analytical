@@ -8,6 +8,8 @@ export class UserSearchPipe implements PipeTransform {
             return list;
         }
 
-        return list.filter(u => u.fio.includes(query) || u.doctorFio.includes(query));
+        const q = query.trim().toLowerCase()
+
+        return list.filter(u => u.fio.toLowerCase().includes(q) || u.doctorFio.toLowerCase().includes(q));
     }
 }

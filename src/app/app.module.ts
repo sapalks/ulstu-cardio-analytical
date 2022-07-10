@@ -16,7 +16,7 @@ import { MaterialModule } from './material';
     components.ListComponent,
     components.PnfComponent,
     components.AddUserDialogComponent,
-
+    components.HeaderComponent,
     pipes.UserSearchPipe,
   ],
   imports: [

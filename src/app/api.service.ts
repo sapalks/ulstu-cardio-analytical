@@ -14,7 +14,7 @@ export class ApiService {
 
 
     public loadList(): void {
-        const users: UserBaseInfo[] = Array(10).fill(0).map(getRandomUser);
+        const users: UserBaseInfo[] = Array(10).fill(0).map((o, i) => getRandomUser(i));
         of(users).pipe(delay(100)).subscribe(users => this.store.dispatch(adminActions.setUsers({ users })))
     }
 

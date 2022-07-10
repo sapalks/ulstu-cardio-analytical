@@ -19,10 +19,24 @@ export function getRandomNumber(max?: number, min?: number): number {
     return min + Math.round(Math.random() * (max - min));
 }
 
-export function getRandomUser(): UserBaseInfo {
+export function getRandomUser(index: number = 0): UserBaseInfo {
+    // const user: UserBaseInfo = {
+    //     id: uuid(),
+    //     fio: `${getRandomString(getRandomNumber(10, 7))} ${getRandomString(getRandomNumber(17, 10))} ${getRandomString(getRandomNumber(17, 10))}`,
+    //     region: 'Uljanovsk',
+    //     clientClass: 'A',
+    //     born: Date.now(),
+    //     lastRequestAt: Date.now(),
+    //     requestCount: getRandomNumber(100, 10),
+    //     recommendationCount: getRandomNumber(100, 10),
+    //     recommendationAvgRating: getRandomNumber(5),
+    //     doctorFio: `${getRandomString(getRandomNumber(10, 7))} ${getRandomString(getRandomNumber(17, 10))} ${getRandomString(getRandomNumber(17, 10))}`,
+    //     doctorEmail: `${getRandomString(getRandomNumber(10, 3))}@gmail.com`
+    // };
+
     const user: UserBaseInfo = {
         id: uuid(),
-        fio: `${getRandomString(getRandomNumber(10, 7))} ${getRandomString(getRandomNumber(17, 10))} ${getRandomString(getRandomNumber(17, 10))}`,
+        fio: `client FIO ${index ?? 0}`,
         region: 'Uljanovsk',
         clientClass: 'A',
         born: Date.now(),
@@ -30,8 +44,8 @@ export function getRandomUser(): UserBaseInfo {
         requestCount: getRandomNumber(100, 10),
         recommendationCount: getRandomNumber(100, 10),
         recommendationAvgRating: getRandomNumber(5),
-        doctorFio: `${getRandomString(getRandomNumber(10, 7))} ${getRandomString(getRandomNumber(17, 10))} ${getRandomString(getRandomNumber(17, 10))}`,
-        doctorEmail: `${getRandomString(getRandomNumber(10, 3))}@gmail.com`
+        doctorFio: `doctor FIO ${index ?? 0}`,
+        doctorEmail: `doctor@gmail.com`
     };
 
     return user;
