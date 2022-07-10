@@ -8,7 +8,7 @@
         <button (click)="addUser()" mat-raised-button color="primary" class="search__btn">Добавить</button>
     </div>
     <div class="users">
-        <div class="users__item" *ngFor="let user of users$ | async | ufilter:query">
+        <div class="users__item" *ngFor="let user of users$ | async | ufilter:query" (click)="open(user.id)">
             <div class="users__item__main-info">
                 {{user.fio}} ({{user.born | date: 'dd.MM.yyyy'}})
             </div>

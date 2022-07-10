@@ -6,6 +6,7 @@ import { users } from '../store/admin.selector';
 import { FullStore, UserBaseInfo } from '../store/store.model';
 import { MatDialog } from '@angular/material/dialog';
 import { AddUserDialogComponent } from '../add-user-dialog/add-user-dialog.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -17,7 +18,8 @@ export class ListComponent implements OnInit {
   query: string = '';
 
   constructor(
-    private readonly store: Store<FullStore>,
+    private route: ActivatedRoute,
+    private router: Router,
     private readonly api: ApiService,
     private readonly dialog: MatDialog,
   ) {
@@ -37,6 +39,13 @@ export class ListComponent implements OnInit {
         this.api.addUser(model);
       }
     })
+  }
+
+  open(id: string) {
+    console.log(id)
+    this.router.navigate(['user', id], {
+      queryParams: this.route.snapshot.queryParams
+    });
   }
 
 }

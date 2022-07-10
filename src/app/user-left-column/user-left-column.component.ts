@@ -32,8 +32,20 @@ export class UserLeftColumnComponent implements OnInit {
       if (userId) {
         this.store.dispatch(userActions.serUserId({ userId }))
       }
-
     })
+  }
+
+  open(subPath: string) {
+    const userId = this.route.snapshot.paramMap.get('userId');
+    this.router.navigate(['user', userId, subPath], {
+      queryParams: this.route.snapshot.queryParams
+    });
+  }
+
+  isActive(subPath: string) {
+    const userId = this.route.snapshot.paramMap.get('userId');
+    const path = `user/${userId}/${subPath}`;
+    return location.pathname.includes(path);
   }
 
 }

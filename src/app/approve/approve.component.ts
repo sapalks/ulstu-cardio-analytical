@@ -15,7 +15,7 @@ export class ApproveComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
   ) {
-    this.userId = this.route.snapshot.params['id'];
+    this.userId = this.route.snapshot.params['userId'];
     const isApproved = getCookie(this.cookiesKey);
     if (!isApproved) {
       return;

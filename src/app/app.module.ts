@@ -23,6 +23,10 @@ import { MaterialModule } from './material';
     components.ApproveComponent,
     components.UserLeftColumnComponent,
     components.LoaderComponent,
+    components.BaselineComponent,
+    components.LifestyleComponent,
+    components.AdditionalComponent,
+    components.RecommendationComponent,
   ],
   imports: [
     BrowserModule,

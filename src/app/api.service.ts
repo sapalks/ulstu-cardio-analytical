@@ -53,7 +53,7 @@ export class ApiService {
     private getFullUserInfo(id: string) {
         const user: UserFullModel = getRandomUser();
         this.store.dispatch(userActions.startUserLoading({ id }));
-        of(user).pipe(delay(1000)).subscribe(user => this.store.dispatch(userActions.serUser({ user: { ...user, id } })));
+        of(user).pipe(delay(100)).subscribe(user => this.store.dispatch(userActions.serUser({ user: { ...user, id } })));
 
     }
 }
