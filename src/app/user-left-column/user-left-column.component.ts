@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { ApiService } from '../api.service';
+import { FullStore, UserFullModel, UserStore } from '../store/store.model';
+import { loading } from '../store/user.selector';
+import { actions as userActions } from '../store/user.slice';
 
 @Component({
   selector: 'app-user-left-column',
@@ -7,9 +14,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserLeftColumnComponent implements OnInit {
 
-  constructor() { }
+  user$: Observable<UserFullModel | null>;
+  loading$: Observable<boolean>;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private api: ApiService,
+    private store: Store<FullStore>) {
+    this.user$ = this.api.getUser();
+    this.loading$ = this.store.select(loading);
+  }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      const userId = params.get('userId');
+      if (userId) {
+        this.store.dispatch(userActions.serUserId({ userId }))
+      }
+
+    })
   }
 
 }

@@ -1,3 +1,4 @@
-<div class="user-info">
-
+<div *ngIf="!(loading$|async)" class="user-info">
+    {{user$|async|json}}
 </div>
+<app-loader *ngIf="(loading$|async)"></app-loader>

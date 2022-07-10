@@ -21,14 +21,7 @@ export class ListComponent implements OnInit {
     private readonly api: ApiService,
     private readonly dialog: MatDialog,
   ) {
-    this.users$ = this.store.select(users).pipe(
-      map(list => {
-        if (!list.length) {
-          this.api.loadList();
-        }
-        return list;
-      })
-    );
+    this.users$ = this.api.users();
   }
 
   ngOnInit(): void {

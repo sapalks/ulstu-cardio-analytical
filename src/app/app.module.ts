@@ -4,6 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import * as adminStore from './store/admin.slice';
+import * as userStore from './store/user.slice';
 import * as components from './components';
 import * as pipes from './pipe';
 import { CommonModule } from '@angular/common';
@@ -21,6 +22,7 @@ import { MaterialModule } from './material';
     components.ProfileComponent,
     components.ApproveComponent,
     components.UserLeftColumnComponent,
+    components.LoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +33,7 @@ import { MaterialModule } from './material';
     MaterialModule,
     StoreModule.forRoot({}),
     StoreModule.forFeature(adminStore.name, adminStore.reducer),
+    StoreModule.forFeature(userStore.name, userStore.reducer),
     BrowserAnimationsModule,
   ],
   providers: [],

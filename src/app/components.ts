@@ -9,3 +9,4 @@ export { HeaderComponent } from './header/header.component';
 export { ProfileComponent } from './profile/profile.component';
 export { ApproveComponent } from './approve/approve.component';
 export { UserLeftColumnComponent } from './user-left-column/user-left-column.component';
+export { LoaderComponent } from './loader/loader.component';
