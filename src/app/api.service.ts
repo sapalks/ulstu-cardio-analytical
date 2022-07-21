@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { getRandomUser } from "./mock/utils";
+import { getRandomFullUserInfo, getRandomUser } from "./mock/utils";
 import { FullStore, UserBaseInfo, UserFullModel, UserStore } from "./store/store.model";
 import { actions as adminActions } from './store/admin.slice';
 import { actions as userActions } from './store/user.slice';
@@ -14,13 +14,12 @@ export class ApiService {
     lastUserId: string = '';
     public constructor(
         private readonly store: Store<FullStore>,
-        private route: ActivatedRoute,
     ) {
         this.store.select(userId).subscribe(userId => {
             if (userId && this.lastUserId !== userId) {
                 this.getFullUserInfo(userId);
             }
-        })
+        });
     }
 
     public users(): Observable<UserBaseInfo[]> {
@@ -51,7 +50,7 @@ export class ApiService {
     }
 
     private getFullUserInfo(id: string) {
-        const user: UserFullModel = getRandomUser();
+        const user: UserFullModel = getRandomFullUserInfo(id);
         this.store.dispatch(userActions.startUserLoading({ id }));
         of(user).pipe(delay(100)).subscribe(user => this.store.dispatch(userActions.serUser({ user: { ...user, id } })));
 

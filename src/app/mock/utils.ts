@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { UserBaseInfo } from "../store/store.model";
+import { SexEnum, UserBaseInfo, UserFullModel } from "../store/store.model";
 
 export function getRandomString(length = 25, symbsString?: string): string {
     symbsString = symbsString
@@ -46,6 +46,40 @@ export function getRandomUser(index: number = 0): UserBaseInfo {
         recommendationAvgRating: getRandomNumber(5),
         doctorFio: `doctor FIO ${index ?? 0}`,
         doctorEmail: `doctor@gmail.com`
+    };
+
+    return user;
+}
+
+export function getRandomFullUserInfo(id: string, index: number = 0): UserFullModel {
+
+    const user: UserFullModel = {
+        id,
+        login: 'user login',
+        fio: `client FIO ${index ?? 0}`,
+        region: 'Uljanovsk',
+        clientClass: 'A',
+        born: Date.now(),
+        lastRequestAt: Date.now(),
+        requestCount: getRandomNumber(100, 10),
+        recommendationCount: getRandomNumber(100, 10),
+        recommendationAvgRating: getRandomNumber(5),
+        doctorFio: `doctor FIO ${index ?? 0}`,
+        doctorEmail: `doctor@gmail.com`,
+        sex: SexEnum.MAN,
+        birthAt: Date.now(),
+        valuation1: '',
+        valuation2: '',
+        valuation3: '',
+        ecg: '',
+        cardiovascularDiseasePredisposition: false,
+        statinsTaking: false,
+        arterialHypertension: false,
+        cardiacIschemia: false,
+        diabetesType2: false,
+        myocardialInfarction: false,
+        atherosclerosis: false,
+        otherCardiovascularSystemDiseases: false,
     };
 
     return user;
