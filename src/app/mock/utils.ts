@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { SexEnum, UserBaseInfo, UserFullModel } from "../store/store.model";
+import { CardiovascularDiseasePredispositionEnum, InfarctionOrInsultEnum, SexEnum, UserBaseInfo, UserFullModel } from "../store/store.model";
 
 export function getRandomString(length = 25, symbsString?: string): string {
     symbsString = symbsString
@@ -72,14 +72,15 @@ export function getRandomFullUserInfo(id: string, index: number = 0): UserFullMo
         valuation2: '',
         valuation3: '',
         ecg: '',
-        cardiovascularDiseasePredisposition: false,
+        cardiovascularDiseasePredisposition: CardiovascularDiseasePredispositionEnum.HAVE_DISEASE_IN_FAMILY,
         statinsTaking: false,
         arterialHypertension: false,
         cardiacIschemia: false,
         diabetesType2: false,
-        myocardialInfarction: false,
+        infarctionOrInsult: InfarctionOrInsultEnum.NO,
         atherosclerosis: false,
         otherCardiovascularSystemDiseases: false,
+        chronicKidneyDisease: false,
     };
 
     return user;

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ApiService } from '../api.service';
-import { FullStore, UserFullModel, UserStore } from '../store/store.model';
+import { CardiovascularDiseasePredispositionEnum, FullStore, InfarctionOrInsultEnum, UserFullModel, UserStore } from '../store/store.model';
 import { loading } from '../store/user.selector';
 
 @Component({
@@ -27,6 +27,30 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  cdp(value: CardiovascularDiseasePredispositionEnum): string {
+    switch (value) {
+      case CardiovascularDiseasePredispositionEnum.HAVE_DISEASE_IN_FAMILY:
+        return 'были СС заболевания у ближайших родственников в возрасте до 70 лет';
+      case CardiovascularDiseasePredispositionEnum.GENETIC_PREDISPOSITION:
+        return 'генетическая предрасположенность';
+      case CardiovascularDiseasePredispositionEnum.NO:
+      default:
+        return 'нет';
+    }
+  }
+
+  ii(value: InfarctionOrInsultEnum): string {
+    switch (value) {
+      case InfarctionOrInsultEnum.INFARCTION:
+        return 'инфаркт';
+      case InfarctionOrInsultEnum.INSULT:
+        return 'инсульт';
+      case InfarctionOrInsultEnum.NO:
+      default:
+        return 'нет';
+    }
   }
 
 }

@@ -1,4 +1,123 @@
 <app-user-left-column></app-user-left-column>
 <div class="wrapper">
-    <h1>WIP</h1>
+    <h1>Базовые показатели сердечно-сосудистого здоровья</h1>
+    <p class="pre">
+        Введите базовые показатели, необходимые для оценки и прогнозирования вашего сердечно-сосудистого здоровья и на
+        этой основе автоматически создать рекомендации, ориентированные именно на вас и ваши показатели. Полученный
+        здесь результат покажет суммарный риск развития возможных сердечно-сосудистых событий в течение последующих
+        10-ти лет по шкалам SCORE и определит ваш идеальный «сердечно-сосудистый возраст» по базовым показателям риска
+        снижения сердечно-сосудистого здоровья.<br />
+        *Шкалы SCORE рекомендованы Минздравом РФ и Европейским обществом кардиологов 2021 года для пациентов старше 40
+        лет.
+    </p>
+    <ng-container *ngIf="user$ | async as user">
+        <div class="info">
+            <p>
+                <span class="info__title">
+                    Вес (кг)
+                </span>
+                <span class="info__value" *ngIf="user.weight">
+                    {{user.weight}}
+                </span>
+                <span class="info__value" *ngIf="!user.weight">
+                    не указан
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Рост(см)
+                </span>
+                <span class="info__value" *ngIf="user.growth">
+                    {{user.growth}}
+                </span>
+                <span class="info__value" *ngIf="!user.growth">
+                    не указан
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Индекс массы тела (ИМТ)
+                </span>
+                <span class="info__value">
+                    calc
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Объем талии(см)
+                </span>
+                <span class="info__value" *ngIf="user.waist">
+                    {{user.waist}}
+                </span>
+                <span class="info__value" *ngIf="!user.waist">
+                    не указан
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Пол
+                </span>
+                <span class="info__value">
+                    {{sex(user.sex)}}
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Дата рождения
+                </span>
+                <span class="info__value">
+                    {{user.birthAt | date: 'hh:mm dd.MM.yyyy'}}
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Уровень систолического АД
+                </span>
+                <span class="info__value" *ngIf="user.systolicBloodPressureLevel">
+                    {{user.systolicBloodPressureLevel}}мм.рт.ст.
+                </span>
+                <span class="info__value" *ngIf="!user.systolicBloodPressureLevel">
+                    не указан
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Курение
+                </span>
+                <span class="info__value" *ngIf="user.isSmocking!==undefined">
+                    {{user.isSmocking?'курит':'не курит'}}
+                </span>
+                <span class="info__value" *ngIf="user.isSmocking===undefined">
+                    не указан
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Общий холестерин
+                </span>
+                <span class="info__value" *ngIf="user.cholesterol!==undefined">
+                    {{user.cholesterol}}ммоль/л
+                </span>
+                <span class="info__value" *ngIf="user.cholesterol===undefined">
+                    не указан
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Риск сердечно-сосудистых событий в течение 10 лет по шкале SCORE
+                </span>
+                <span class="info__value">
+                    calc
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Ваш идеальный «сердечно-сосудистый возраст»
+                </span>
+                <span class="info__value">
+                    calc
+                </span>
+            </p>
+        </div>
+    </ng-container>
 </div>

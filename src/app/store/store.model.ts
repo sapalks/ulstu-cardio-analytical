@@ -44,6 +44,7 @@ export enum InSocialEventsEnum {
 export enum PhysicalActivityEnum {
     ONE = 'one',
     MORE = 'more',
+    DAILY = 'daily',
 }
 
 export enum WorkStatusEnum {
@@ -62,6 +63,18 @@ export enum CommitmentEnum {
     LOW = 'low',
     MEDIUM = 'medium',
     HIGTH = 'higth',
+}
+
+export enum CardiovascularDiseasePredispositionEnum {
+    NO = 'no',
+    HAVE_DISEASE_IN_FAMILY = 'have disease in family',
+    GENETIC_PREDISPOSITION = 'genetic predisposition',
+}
+
+export enum InfarctionOrInsultEnum {
+    NO = 'no',
+    INFARCTION = 'infarction',
+    INSULT = 'insult'
 }
 
 export interface UserFullModel extends UserBaseInfo {
@@ -126,11 +139,11 @@ export interface UserFullModel extends UserBaseInfo {
     havePlaques?: boolean | undefined;
 
     // предрасположенность к сердечно-сосудистым заболеваниям
-    cardiovascularDiseasePredisposition: boolean;
+    cardiovascularDiseasePredisposition: CardiovascularDiseasePredispositionEnum;
     // прием статинов
     statinsTaking: boolean;
     // хроническое заболевание почек
-    chronicKidneyDisease?: boolean | undefined;
+    chronicKidneyDisease: boolean;
     // Артериальная гипертония
     arterialHypertension: boolean;
     // Ишемическая болезнь сердца
@@ -138,7 +151,7 @@ export interface UserFullModel extends UserBaseInfo {
     // Сахарный диабет 2 типа
     diabetesType2: boolean;
     // Инфаркт миокарда или инсульт
-    myocardialInfarction: boolean;
+    infarctionOrInsult: InfarctionOrInsultEnum;
     // Атеросклероз
     atherosclerosis: boolean;
     // Другие заболевания сердечно-сосудистой системы

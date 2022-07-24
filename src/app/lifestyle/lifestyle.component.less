@@ -1,15 +1,65 @@
 :host {
     position: relative;
-    min-height: 100vh;
-    height: 100vh;
+    height: ~"calc(100vh - 62px)";
     display: block;
+    padding-top: 62px;
 }
 
 .wrapper {
     border: 1px solid #CACACA;
     padding: 20px;
     margin-left: 321px;
-    margin-top: 62px;
     margin-right: 10px;
     border-radius: 5px;
+}
+
+.pre {
+    font-size: 0.85em;
+    border: 0.5px solid rgba(0, 0, 0, .2);
+    background: rgba(0, 0, 0, .05);
+    border-radius: 5px;
+    box-shadow: 0 3px 5px -1px #0003, 0 6px 10px #00000024, 0 1px 18px #0000001f;
+    padding: 10px 15px;
+    margin-bottom: 40px;
+    line-height: 1.2;
+}
+
+h3 {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.info {
+    margin-left: -20px;
+    margin-right: -20px;
+
+    p {
+        display: flex;
+        padding-top: 5px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+
+        &:nth-child(2n+1) {
+            background: rgba(0, 0, 0, .05);
+        }
+    }
+
+
+    &__title {
+        width: ~"calc(40% - 20px)";
+        padding-right: 20px;
+        max-width: 350px;
+    }
+
+    &__value {
+        width: 60%;
+        text-transform: lowercase;
+
+        &:first-letter {
+            text-transform: uppercase;
+        }
+    }
 }

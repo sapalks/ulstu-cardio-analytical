@@ -18,7 +18,6 @@ import { MaterialModule } from './material';
     components.PnfComponent,
     components.AddUserDialogComponent,
     components.HeaderComponent,
-    pipes.UserSearchPipe,
     components.ProfileComponent,
     components.ApproveComponent,
     components.UserLeftColumnComponent,
@@ -27,6 +26,10 @@ import { MaterialModule } from './material';
     components.LifestyleComponent,
     components.AdditionalComponent,
     components.RecommendationComponent,
+
+
+    pipes.UserSearchPipe,
+    pipes.YesNoPipe,
   ],
   imports: [
     BrowserModule,

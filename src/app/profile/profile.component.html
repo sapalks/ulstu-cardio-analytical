@@ -1,9 +1,129 @@
 <app-user-left-column></app-user-left-column>
 <div class="wrapper">
     <h1>Общая информация</h1>
-    <p>
+    <p class="pre">
         Введите общую информацию о себе, это позволит автоматически создавать пациент-ориентированные рекомендации и
         согласовывать их с Вашим курирующим врачом (при наличии).<br />
         Все данные здесь заполняются однократно, но могут быть изменены при необходимости.
     </p>
+    <ng-container *ngIf="user$ | async as user">
+        <div class="info">
+            <p>
+                <span class="info__title">
+                    Логин
+                </span>
+                <span class="info__value">
+                    {{user.login}}
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    ФИО
+                </span>
+                <span class="info__value">
+                    {{user.fio}}
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Регион проживания
+                </span>
+                <span class="info__value">
+                    {{user.region}}
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    ФИО курирующего врача
+                </span>
+                <span class="info__value">
+                    {{user.doctorFio}}
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Почта курирующего врача
+                </span>
+                <span class="info__value">
+                    {{user.doctorEmail}}
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Предрасположенность к сердечно-сосудистым заболеваниям
+                </span>
+                <span class="info__value">
+                    {{cdp(user.cardiovascularDiseasePredisposition)}}
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Прием статинов
+                </span>
+                <span class="info__value">
+                    {{user.statinsTaking | yn:false}}
+                </span>
+            </p>
+        </div>
+        <h3>Наличие заболеваний</h3>
+        <div class="info">
+            <p>
+                <span class="info__title">
+                    Хроническая болезнь почек
+                </span>
+                <span class="info__value">
+                    {{user.chronicKidneyDisease | yn:false}}
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Артериальная гипертония
+                </span>
+                <span class="info__value">
+                    {{user.arterialHypertension | yn:false}}
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Ишемическая болезнь сердца
+                </span>
+                <span class="info__value">
+                    {{user.cardiacIschemia | yn:false}}
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Сахарный диабет 2 типа
+                </span>
+                <span class="info__value">
+                    {{user.diabetesType2 | yn:false}}
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Инфаркт миокарда или инсульт
+                </span>
+                <span class="info__value">
+                    {{ii(user.infarctionOrInsult)}}
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Атеросклероз
+                </span>
+                <span class="info__value">
+                    {{user.atherosclerosis | yn:false}}
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Другие заболевания сердечно-сосудистой системы
+                </span>
+                <span class="info__value">
+                    {{user.otherCardiovascularSystemDiseases | yn:false}}
+                </span>
+            </p>
+
+        </div>
+    </ng-container>
 </div>

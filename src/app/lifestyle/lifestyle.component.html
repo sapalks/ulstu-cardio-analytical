@@ -1,4 +1,86 @@
 <app-user-left-column></app-user-left-column>
 <div class="wrapper">
-    <h1>WIP</h1>
+    <h1>Образ жизни</h1>
+    <p class="pre">
+        Введите информацию о вашем образе жизни, эта информация позволит более точно сформулировать текст рекомендаций
+        по управлению вашего сердечно-сосудистого здоровья, ориентированный именно на ваш социальный статус и
+        особенности образа жизни.
+    </p>
+
+    <ng-container *ngIf="user$ | async as user">
+        <div class="info">
+            <p>
+                <span class="info__title">
+                    Семейное положение
+                </span>
+                <span class="info__value">
+                    {{fs(user.familyStatus, user.sex)}}
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Участие в социально-культурных мероприятиях
+                </span>
+                <span class="info__value">
+                    {{se(user.inSocialEvents)}}
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Физическая активность
+                </span>
+                <span class="info__value">
+                    {{pa(user.physicalActivity)}}
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Работа
+                </span>
+                <span class="info__value">
+                    {{w(user.workStatus)}}
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Симптомы стенокардии
+                </span>
+                <span class="info__value">
+                    {{sap(user.symptomsOfAnginaPectoris)}}
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Приверженность
+                </span>
+                <span class="info__value">
+                    {{c(user.commitment)}}
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Самая значимая ценность для вас
+                </span>
+                <span class="info__value">
+                    {{user.valuation1 || 'не указано'}}
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Наиболее значимая ценность для вас
+                </span>
+                <span class="info__value">
+                    {{user.valuation2 || 'не указано'}}
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Значимая ценность для вас
+                </span>
+                <span class="info__value">
+                    {{user.valuation3 || 'не указано'}}
+                </span>
+            </p>
+        </div>
+    </ng-container>
 </div>

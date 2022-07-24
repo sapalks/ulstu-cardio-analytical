@@ -1,4 +1,109 @@
 <app-user-left-column></app-user-left-column>
 <div class="wrapper">
-    <h1>WIP</h1>
+    <h1>Дополнительно</h1>
+    <p class="pre">
+        Введите данные по дополнительным показателям, рекомендованные курирующим врачом, это важно для их оценки,
+        прогнозирования и контроля, а также для генерации персонализированных рекомендаций
+    </p>
+
+    <ng-container *ngIf="user$ | async as user">
+        <div class="info">
+            <p>
+                <span class="info__title">
+                    Холестерин высокой плотности (ЛПВП)
+                </span>
+                <span class="info__value" *ngIf="user.highDensityCholesterol">
+                    {{user.highDensityCholesterol}}ммоль/л
+                </span>
+                <span class="info__value" *ngIf="!user.highDensityCholesterol">
+                    не указано
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Холестерин низкой плотности (ЛПНП)
+                </span>
+                <span class="info__value" *ngIf="user.lowDensityCholesterol">
+                    {{user.lowDensityCholesterol}}ммоль/л
+                </span>
+                <span class="info__value" *ngIf="!user.lowDensityCholesterol">
+                    не указано
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Триглицериды
+                </span>
+                <span class="info__value" *ngIf="user.triglycerides">
+                    {{user.triglycerides}}ммоль/л
+                </span>
+                <span class="info__value" *ngIf="!user.triglycerides">
+                    не указано
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Липопротеин
+                </span>
+                <span class="info__value" *ngIf="user.lipoprotein">
+                    {{user.lipoprotein}}г/л
+                </span>
+                <span class="info__value" *ngIf="!user.lipoprotein">
+                    не указано
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Результаты ЭКГ
+                </span>
+                <span class="info__value" *ngIf="user.ecg">
+                    {{user.ecg}}
+                </span>
+                <span class="info__value" *ngIf="!user.ecg">
+                    не указано
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Высокочувствительный С-реактивный белок (кардио)
+                </span>
+                <span class="info__value" *ngIf="user.protein">
+                    {{user.protein}}мг/л
+                </span>
+                <span class="info__value" *ngIf="!user.protein">
+                    не указано
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Коэффициент атерогенности
+                </span>
+                <span class="info__value" *ngIf="user.atherogenicCoefficient">
+                    {{user.atherogenicCoefficient}}
+                </span>
+                <span class="info__value" *ngIf="!user.atherogenicCoefficient">
+                    не указано
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Креатинин
+                </span>
+                <span class="info__value" *ngIf="user.creatinine">
+                    {{user.creatinine}}ммоль/л
+                </span>
+                <span class="info__value" *ngIf="!user.creatinine">
+                    не указано
+                </span>
+            </p>
+            <p>
+                <span class="info__title">
+                    Результаты УЗДМАГ. Наличие атеросклеротических бляшек
+                </span>
+                <span class="info__value">
+                    {{user.havePlaques | yn:false}}
+                </span>
+            </p>
+        </div>
+    </ng-container>
 </div>
