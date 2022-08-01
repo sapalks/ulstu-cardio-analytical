@@ -7,123 +7,103 @@
         Все данные здесь заполняются однократно, но могут быть изменены при необходимости.
     </p>
     <ng-container *ngIf="user$ | async as user">
-        <div class="info">
-            <p>
-                <span class="info__title">
-                    Логин
-                </span>
-                <span class="info__value">
-                    {{user.login}}
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    ФИО
-                </span>
-                <span class="info__value">
-                    {{user.fio}}
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Регион проживания
-                </span>
-                <span class="info__value">
-                    {{user.region}}
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    ФИО курирующего врача
-                </span>
-                <span class="info__value">
-                    {{user.doctorFio}}
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Почта курирующего врача
-                </span>
-                <span class="info__value">
-                    {{user.doctorEmail}}
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Предрасположенность к сердечно-сосудистым заболеваниям
-                </span>
-                <span class="info__value">
-                    {{cdp(user.cardiovascularDiseasePredisposition)}}
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Прием статинов
-                </span>
-                <span class="info__value">
-                    {{user.statinsTaking | yn:false}}
-                </span>
-            </p>
-        </div>
-        <h3>Наличие заболеваний</h3>
-        <div class="info">
-            <p>
-                <span class="info__title">
-                    Хроническая болезнь почек
-                </span>
-                <span class="info__value">
-                    {{user.chronicKidneyDisease | yn:false}}
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Артериальная гипертония
-                </span>
-                <span class="info__value">
-                    {{user.arterialHypertension | yn:false}}
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Ишемическая болезнь сердца
-                </span>
-                <span class="info__value">
-                    {{user.cardiacIschemia | yn:false}}
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Сахарный диабет 2 типа
-                </span>
-                <span class="info__value">
-                    {{user.diabetesType2 | yn:false}}
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Инфаркт миокарда или инсульт
-                </span>
-                <span class="info__value">
-                    {{ii(user.infarctionOrInsult)}}
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Атеросклероз
-                </span>
-                <span class="info__value">
-                    {{user.atherosclerosis | yn:false}}
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Другие заболевания сердечно-сосудистой системы
-                </span>
-                <span class="info__value">
-                    {{user.otherCardiovascularSystemDiseases | yn:false}}
-                </span>
-            </p>
-
+        <div class="form" [formGroup]="form">
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Логин</mat-label>
+                <input matInput formControlName="login">
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>ФИО</mat-label>
+                <input matInput formControlName="fio">
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Регион проживания</mat-label>
+                <input matInput formControlName="region">
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>ФИО курирующего врача</mat-label>
+                <input matInput formControlName="doctorFio">
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Почта курирующего врача</mat-label>
+                <input matInput formControlName="doctorEmail">
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Предрасположенность к сердечно-сосудистым заболеваниям</mat-label>
+                <mat-select formControlName="cardiovascularDiseasePredisposition">
+                    <mat-option *ngFor="let item of cdpFields" [value]="item.value">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Прием статинов</mat-label>
+                <mat-select formControlName="statinsTaking">
+                    <mat-option *ngFor="let item of yn" [value]="item.value">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <h3>Наличие заболеваний</h3>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Хроническая болезнь почек</mat-label>
+                <mat-select formControlName="chronicKidneyDisease">
+                    <mat-option *ngFor="let item of yn" [value]="item.value">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Артериальная гипертония</mat-label>
+                <mat-select formControlName="arterialHypertension">
+                    <mat-option *ngFor="let item of yn" [value]="item.value">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Ишемическая болезнь сердца</mat-label>
+                <mat-select formControlName="cardiacIschemia">
+                    <mat-option *ngFor="let item of yn" [value]="item.value">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Сахарный диабет 2 типа</mat-label>
+                <mat-select formControlName="diabetesType2">
+                    <mat-option *ngFor="let item of yn" [value]="item.value">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Инфаркт миокарда или инсульт</mat-label>
+                <mat-select formControlName="infarctionOrInsult">
+                    <mat-option *ngFor="let item of ii" [value]="item.value">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Атеросклероз</mat-label>
+                <mat-select formControlName="atherosclerosis">
+                    <mat-option *ngFor="let item of yn" [value]="item.value">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Другие заболевания сердечно-сосудистой системы</mat-label>
+                <mat-select formControlName="otherCardiovascularSystemDiseases">
+                    <mat-option *ngFor="let item of yn" [value]="item.value">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
     </ng-container>
+    <div class="btn-next">
+        <a mat-raised-button color="primary" (click)="next()">Далее</a>
+    </div>
 </div>

@@ -212,3 +212,39 @@ Pick<UserFullModel,'id'>&Partial<UserFullModel>
   status: 'ok' | 'error'
 }
 ```
+
+# Получение Риск сердечно-сосудистых событий в течение 10 лет по шкале SCORE
+
+GET, параметры
+
+```
+userId:string
+```
+
+Ответ:
+
+```js
+{
+    status:'ok'|'error',
+    riskOfCardiovascularEvents:number,
+    errorText:''
+}
+```
+
+# Получение Ваш идеальный «сердечно-сосудистый возраст»
+
+GET, параметры
+
+```
+userId:string
+```
+
+Ответ:
+
+```js
+{
+    status:'ok'|'error',
+    cardiovascularAge:number,
+    errorText:''
+}
+```

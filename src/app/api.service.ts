@@ -4,16 +4,17 @@ import { getRandomFullUserInfo, getRandomUser } from "./mock/utils";
 import { FullStore, UserBaseInfo, UserFullModel, UserStore } from "./store/store.model";
 import { actions as adminActions } from './store/admin.slice';
 import { actions as userActions } from './store/user.slice';
-import { delay, map, Observable, of } from "rxjs";
+import { catchError, delay, map, Observable, of } from "rxjs";
 import { users } from "./store/admin.selector";
 import { current, userId } from "./store/user.selector";
-import { ActivatedRoute } from "@angular/router";
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
     lastUserId: string = '';
     public constructor(
         private readonly store: Store<FullStore>,
+        private _snackBar: MatSnackBar
     ) {
         this.store.select(userId).subscribe(userId => {
             if (userId && this.lastUserId !== userId) {
@@ -43,6 +44,52 @@ export class ApiService {
         of(user).pipe(delay(100)).subscribe(user => this.store.dispatch(adminActions.addUser({ user })));
     }
 
+    public update(id: string, data: Partial<UserFullModel>): void {
+        console.log('update user info', {
+            id, ...data
+        })
+        this.store.dispatch(userActions.updateUser({
+            user: {
+                id,
+                ...data
+            }
+        }));
+        this.updateUser(id, data).subscribe(res => {
+            if (!res) {
+                this._snackBar.open('Не удалось сохранить данные, перезагрузите страницу или обратитесь к разработчикам', 'ок')
+            }
+        });
+    }
+
+    public getRiskOfCardiovascularEvents(id: string): Observable<void> {
+        return this.getRiskOfCardiovascularEventsApiCall(id).pipe(catchError(err => {
+            this._snackBar.open('Не удалось получить данные, возможно не указаны все необходимые данные', 'ок')
+            return of(undefined);
+        }), map(res => {
+            this.store.dispatch(userActions.updateUser({
+                user: {
+                    id,
+                    riskOfCardiovascularEvents: res
+                }
+            }))
+        }));
+    }
+
+    public getCardiovascularAge(id: string): Observable<void> {
+        return this.getCardiovascularAgeApiCall(id).pipe(catchError(err => {
+            this._snackBar.open('Не удалось получить данные, возможно не указаны все необходимые данные', 'ок')
+            return of(undefined);
+        }), map(res => {
+            this.store.dispatch(userActions.updateUser({
+                user: {
+                    id,
+                    cardiovascularAge: res
+                }
+            }))
+        }));
+
+    }
+
 
     private loadList(): void {
         const users: UserBaseInfo[] = Array(10).fill(0).map((o, i) => getRandomUser(i));
@@ -52,7 +99,17 @@ export class ApiService {
     private getFullUserInfo(id: string) {
         const user: UserFullModel = getRandomFullUserInfo(id);
         this.store.dispatch(userActions.startUserLoading({ id }));
-        of(user).pipe(delay(100)).subscribe(user => this.store.dispatch(userActions.serUser({ user: { ...user, id } })));
+        of(user).pipe(delay(100)).subscribe(user => this.store.dispatch(userActions.setUser({ user: { ...user, id } })));
+    }
 
+    private updateUser(id: string, data: Partial<UserFullModel>): Observable<boolean> {
+        return of(true).pipe(delay(300));
+    }
+
+    private getRiskOfCardiovascularEventsApiCall(id: string): Observable<number> {
+        return of(10).pipe(delay(300));
+    }
+    private getCardiovascularAgeApiCall(id: string): Observable<number> {
+        return of(10).pipe(delay(300));
     }
 }

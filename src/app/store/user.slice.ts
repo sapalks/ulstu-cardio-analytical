@@ -13,10 +13,19 @@ const userSlice = createSlice({
             state.id = action.payload.id;
             state.loading = true;
         },
-        serUser: (state, action: PayloadAction<{ user: UserFullModel }>) => {
+        setUser: (state, action: PayloadAction<{ user: UserFullModel }>) => {
             state.current = action.payload.user;
             state.loading = false;
+        },
+        updateUser: (state, action: PayloadAction<{ user: Pick<UserFullModel, 'id'> & Partial<UserFullModel> }>) => {
+            const { user } = action.payload;
+            const newCurrent = {
+                ...state.current,
+                ...user
+            } as UserFullModel
+            state.current = newCurrent;
         }
+
     }
 });
 

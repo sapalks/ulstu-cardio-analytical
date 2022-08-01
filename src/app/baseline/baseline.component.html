@@ -11,113 +11,74 @@
         лет.
     </p>
     <ng-container *ngIf="user$ | async as user">
-        <div class="info">
-            <p>
-                <span class="info__title">
-                    Вес (кг)
-                </span>
-                <span class="info__value" *ngIf="user.weight">
-                    {{user.weight}}
-                </span>
-                <span class="info__value" *ngIf="!user.weight">
-                    не указан
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Рост(см)
-                </span>
-                <span class="info__value" *ngIf="user.growth">
-                    {{user.growth}}
-                </span>
-                <span class="info__value" *ngIf="!user.growth">
-                    не указан
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Индекс массы тела (ИМТ)
-                </span>
-                <span class="info__value">
-                    calc
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Объем талии(см)
-                </span>
-                <span class="info__value" *ngIf="user.waist">
-                    {{user.waist}}
-                </span>
-                <span class="info__value" *ngIf="!user.waist">
-                    не указан
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Пол
-                </span>
-                <span class="info__value">
-                    {{sex(user.sex)}}
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Дата рождения
-                </span>
-                <span class="info__value">
-                    {{user.birthAt | date: 'hh:mm dd.MM.yyyy'}}
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Уровень систолического АД
-                </span>
-                <span class="info__value" *ngIf="user.systolicBloodPressureLevel">
-                    {{user.systolicBloodPressureLevel}}мм.рт.ст.
-                </span>
-                <span class="info__value" *ngIf="!user.systolicBloodPressureLevel">
-                    не указан
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Курение
-                </span>
-                <span class="info__value" *ngIf="user.isSmocking!==undefined">
-                    {{user.isSmocking?'курит':'не курит'}}
-                </span>
-                <span class="info__value" *ngIf="user.isSmocking===undefined">
-                    не указан
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Общий холестерин
-                </span>
-                <span class="info__value" *ngIf="user.cholesterol!==undefined">
-                    {{user.cholesterol}}ммоль/л
-                </span>
-                <span class="info__value" *ngIf="user.cholesterol===undefined">
-                    не указан
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Риск сердечно-сосудистых событий в течение 10 лет по шкале SCORE
-                </span>
-                <span class="info__value">
-                    calc
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Ваш идеальный «сердечно-сосудистый возраст»
-                </span>
-                <span class="info__value">
-                    calc
-                </span>
-            </p>
+        <div class="form" [formGroup]="form">
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Вес (кг)</mat-label>
+                <input matInput formControlName="weight">
+                <span matSuffix>кг</span>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Рост(см)</mat-label>
+                <input matInput formControlName="growth">
+                <span matSuffix>см</span>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Индекс массы тела (ИМТ)</mat-label>
+                <input matInput [value]="imt" disabled>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Объем талии(см)</mat-label>
+                <input matInput formControlName="waist">
+                <span matSuffix>см</span>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Пол</mat-label>
+                <mat-select formControlName="sex">
+                    <mat-option *ngFor="let item of sex" [value]="item.value">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Дата рождения</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="birthAt">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Уровень систолического АД</mat-label>
+                <input matInput formControlName="systolicBloodPressureLevel">
+                <span matSuffix>мм.рт.ст.</span>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Курение</mat-label>
+                <mat-select formControlName="isSmocking">
+                    <mat-option *ngFor="let item of smocking" [value]="item.value">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Общий холестерин</mat-label>
+                <input matInput formControlName="cholesterol">
+                <span matSuffix>ммоль/л</span>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Риск сердечно-сосудистых событий в течение 10 лет по шкале SCORE</mat-label>
+                <input matInput [value]="user.riskOfCardiovascularEvents??0" disabled>
+            </mat-form-field>
+            <button mat-stroked-button color="primary" class="btn-loader" [disabled]="riskOfCardiovascularEventsLoading"
+                (click)="getRiskOfCardiovascularEvents()">Определить</button>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Ваш идеальный «сердечно-сосудистый возраст»</mat-label>
+                <input matInput [value]="user.cardiovascularAge??0" disabled>
+            </mat-form-field>
+            <button mat-stroked-button color="primary" class="btn-loader" [disabled]="cardiovascularAgeLoading"
+                (click)="getCardiovascularAge()">Определить</button>
         </div>
     </ng-container>
+    <div class="btn-next">
+        <a mat-raised-button color="primary" (click)="next()">Далее</a>
+    </div>
 </div>

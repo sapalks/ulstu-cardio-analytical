@@ -38,7 +38,6 @@ export function getRandomUser(index: number = 0): UserBaseInfo {
         id: uuid(),
         fio: `client FIO ${index ?? 0}`,
         region: 'Uljanovsk',
-        clientClass: 'A',
         born: Date.now(),
         lastRequestAt: Date.now(),
         requestCount: getRandomNumber(100, 10),
@@ -81,6 +80,8 @@ export function getRandomFullUserInfo(id: string, index: number = 0): UserFullMo
         atherosclerosis: false,
         otherCardiovascularSystemDiseases: false,
         chronicKidneyDisease: false,
+        cardiovascularAge: undefined,
+        riskOfCardiovascularEvents: undefined,
     };
 
     return user;

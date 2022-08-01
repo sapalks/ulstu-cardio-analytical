@@ -77,7 +77,12 @@ export enum InfarctionOrInsultEnum {
     INSULT = 'insult'
 }
 
-export interface UserFullModel extends UserBaseInfo {
+export type UserFullModel = UserAdditionalModel & UserBaseInfo & UserCalcInfo;
+
+export interface UserAdditionalModel {
+    // класс пациента
+    clientClass: string;
+    // Логин
     login: string;
     // Вес
     weight?: number | undefined;
@@ -165,8 +170,6 @@ export interface UserBaseInfo {
     fio: string;
     // регион
     region: string;
-    // класс пациента
-    clientClass: string;
     // дата рождения
     born: number;
     // даты последнего обращения
@@ -181,4 +184,9 @@ export interface UserBaseInfo {
     doctorFio: string;
     // почта курирующего врача
     doctorEmail: string;
+}
+
+export interface UserCalcInfo {
+    riskOfCardiovascularEvents: number | undefined,
+    cardiovascularAge: number | undefined
 }
