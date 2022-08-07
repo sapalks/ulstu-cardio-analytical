@@ -7,103 +7,54 @@
     </p>
 
     <ng-container *ngIf="user$ | async as user">
-        <div class="info">
-            <p>
-                <span class="info__title">
-                    Холестерин высокой плотности (ЛПВП)
-                </span>
-                <span class="info__value" *ngIf="user.highDensityCholesterol">
-                    {{user.highDensityCholesterol}}ммоль/л
-                </span>
-                <span class="info__value" *ngIf="!user.highDensityCholesterol">
-                    не указано
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Холестерин низкой плотности (ЛПНП)
-                </span>
-                <span class="info__value" *ngIf="user.lowDensityCholesterol">
-                    {{user.lowDensityCholesterol}}ммоль/л
-                </span>
-                <span class="info__value" *ngIf="!user.lowDensityCholesterol">
-                    не указано
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Триглицериды
-                </span>
-                <span class="info__value" *ngIf="user.triglycerides">
-                    {{user.triglycerides}}ммоль/л
-                </span>
-                <span class="info__value" *ngIf="!user.triglycerides">
-                    не указано
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Липопротеин
-                </span>
-                <span class="info__value" *ngIf="user.lipoprotein">
-                    {{user.lipoprotein}}г/л
-                </span>
-                <span class="info__value" *ngIf="!user.lipoprotein">
-                    не указано
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Результаты ЭКГ
-                </span>
-                <span class="info__value" *ngIf="user.ecg">
-                    {{user.ecg}}
-                </span>
-                <span class="info__value" *ngIf="!user.ecg">
-                    не указано
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Высокочувствительный С-реактивный белок (кардио)
-                </span>
-                <span class="info__value" *ngIf="user.protein">
-                    {{user.protein}}мг/л
-                </span>
-                <span class="info__value" *ngIf="!user.protein">
-                    не указано
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Коэффициент атерогенности
-                </span>
-                <span class="info__value" *ngIf="user.atherogenicCoefficient">
-                    {{user.atherogenicCoefficient}}
-                </span>
-                <span class="info__value" *ngIf="!user.atherogenicCoefficient">
-                    не указано
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Креатинин
-                </span>
-                <span class="info__value" *ngIf="user.creatinine">
-                    {{user.creatinine}}ммоль/л
-                </span>
-                <span class="info__value" *ngIf="!user.creatinine">
-                    не указано
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Результаты УЗДМАГ. Наличие атеросклеротических бляшек
-                </span>
-                <span class="info__value">
-                    {{user.havePlaques | yn:false}}
-                </span>
-            </p>
+        <div class="form" [formGroup]="form">
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Холестерин высокой плотности (ЛПВП)</mat-label>
+                <input matInput formControlName="highDensityCholesterol">
+                <span matSuffix>ммоль/л</span>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Холестерин низкой плотности (ЛПНП)</mat-label>
+                <input matInput formControlName="lowDensityCholesterol">
+                <span matSuffix>ммоль/л</span>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Триглицериды</mat-label>
+                <input matInput formControlName="triglycerides">
+                <span matSuffix>ммоль/л</span>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Липопротеин</mat-label>
+                <input matInput formControlName="lipoprotein">
+                <span matSuffix>г/л</span>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Результаты ЭКГ</mat-label>
+                <input matInput formControlName="ecg">
+                <span matSuffix>г/л</span>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Высокочувствительный С-реактивный белок (кардио)</mat-label>
+                <input matInput formControlName="protein">
+                <span matSuffix>мг/л</span>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Коэффициент атерогенности</mat-label>
+                <input matInput formControlName="atherogenicCoefficient">
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Креатинин</mat-label>
+                <input matInput formControlName="creatinine">
+                <span matSuffix>ммоль/л</span>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Результаты УЗДМАГ. Наличие атеросклеротических бляшек</mat-label>
+                <mat-select formControlName="havePlaques">
+                    <mat-option *ngFor="let item of yn" [value]="item.value">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
     </ng-container>
 </div>

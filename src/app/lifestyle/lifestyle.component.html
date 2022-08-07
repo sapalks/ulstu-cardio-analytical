@@ -8,79 +8,84 @@
     </p>
 
     <ng-container *ngIf="user$ | async as user">
-        <div class="info">
-            <p>
-                <span class="info__title">
-                    Семейное положение
-                </span>
-                <span class="info__value">
-                    {{fs(user.familyStatus, user.sex)}}
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Участие в социально-культурных мероприятиях
-                </span>
-                <span class="info__value">
-                    {{se(user.inSocialEvents)}}
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Физическая активность
-                </span>
-                <span class="info__value">
-                    {{pa(user.physicalActivity)}}
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Работа
-                </span>
-                <span class="info__value">
-                    {{w(user.workStatus)}}
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Симптомы стенокардии
-                </span>
-                <span class="info__value">
-                    {{sap(user.symptomsOfAnginaPectoris)}}
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Приверженность
-                </span>
-                <span class="info__value">
-                    {{c(user.commitment)}}
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Самая значимая ценность для вас
-                </span>
-                <span class="info__value">
-                    {{user.valuation1 || 'не указано'}}
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Наиболее значимая ценность для вас
-                </span>
-                <span class="info__value">
-                    {{user.valuation2 || 'не указано'}}
-                </span>
-            </p>
-            <p>
-                <span class="info__title">
-                    Значимая ценность для вас
-                </span>
-                <span class="info__value">
-                    {{user.valuation3 || 'не указано'}}
-                </span>
-            </p>
+        <div class="form" [formGroup]="form">
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Семейное положение</mat-label>
+                <mat-select formControlName="familyStatus">
+                    <mat-option *ngFor="let item of (user.sex==='man'?fsMan:fsWoman)" [value]="item.value">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Участие в социально-культурных мероприятиях</mat-label>
+                <mat-select formControlName="inSocialEvents">
+                    <mat-option *ngFor="let item of se" [value]="item.value">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Физическая активность</mat-label>
+                <mat-select formControlName="physicalActivity">
+                    <mat-option *ngFor="let item of pa" [value]="item.value">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Работа</mat-label>
+                <mat-select formControlName="workStatus">
+                    <mat-option *ngFor="let item of w" [value]="item.value">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Симптомы стенокардии</mat-label>
+                <mat-select [value]="user.symptomsOfAnginaPectoris" disabled>
+                    <mat-option *ngFor="let item of sap" [value]="item.value">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-stroked-button color="primary" class="btn-loader">Определить</button>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Приверженность</mat-label>
+                <mat-select [value]="user.commitment" disabled>
+                    <mat-option *ngFor="let item of c" [value]="item.value">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-stroked-button color="primary" class="btn-loader">Определить</button>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Самая значимая ценность для вас</mat-label>
+                <mat-select formControlName="valuation1">
+                    <mat-option *ngFor="let item of v" [value]="item">
+                        {{item}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Наиболее значимая ценность для вас</mat-label>
+                <mat-select formControlName="valuation2">
+                    <mat-option *ngFor="let item of v" [value]="item">
+                        {{item}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Значимая ценность для вас</mat-label>
+                <mat-select formControlName="valuation3">
+                    <mat-option *ngFor="let item of v" [value]="item">
+                        {{item}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
     </ng-container>
+    <div class="btn-next">
+        <button [disabled]="!form.valid" mat-raised-button color="primary" (click)="next()">Далее</button>
+    </div>
 </div>

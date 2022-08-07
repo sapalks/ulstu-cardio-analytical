@@ -104,6 +104,6 @@
         </div>
     </ng-container>
     <div class="btn-next">
-        <a mat-raised-button color="primary" (click)="next()">Далее</a>
+        <button [disabled]="!form.valid" mat-raised-button color="primary" (click)="next()">Далее</button>
     </div>
 </div>
