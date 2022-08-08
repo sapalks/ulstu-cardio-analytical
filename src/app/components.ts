@@ -14,3 +14,5 @@ export { BaselineComponent } from './baseline/baseline.component';
 export { LifestyleComponent } from './lifestyle/lifestyle.component';
 export { AdditionalComponent } from './additional/additional.component';
 export { RecommendationComponent } from './recommendation/recommendation.component';
+export { QuestionnaireItemComponent } from './questionnaire-item/questionnaire-item.component';
+export { QuestionnaireRouseComponent } from './questionnaire-rouse/questionnaire-rouse.component'

@@ -190,3 +190,14 @@ export interface UserCalcInfo {
     riskOfCardiovascularEvents: number | undefined,
     cardiovascularAge: number | undefined
 }
+
+export interface QuestionnaireAnswer {
+    text: string;
+    value: string;
+}
+
+export interface QuestionnaireItem {
+    index: number;
+    text: string;
+    answers: QuestionnaireAnswer[]
+}

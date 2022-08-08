@@ -1,0 +1,7 @@
+<app-user-left-column></app-user-left-column>
+<div class="wrapper">
+    <h1>Модифицированный опросник Роуза для выявления стенокардии.</h1>
+
+    <app-questionnaire-item *ngIf="getCurrentQuestion()" [question]="getCurrentQuestion()"
+        (response)="onResponse($event)"></app-questionnaire-item>
+</div>

@@ -10,6 +10,7 @@ export const routes: Routes = [
   { path: 'user/:userId/lifestyle', component: components.LifestyleComponent },
   { path: 'user/:userId/additional', component: components.AdditionalComponent },
   { path: 'user/:userId/recommendation', component: components.RecommendationComponent },
+  { path: 'user/:userId/questionnaire-rouse', component: components.QuestionnaireRouseComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: components.PnfComponent },
 ];
