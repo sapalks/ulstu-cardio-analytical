@@ -64,7 +64,6 @@ export class AdditionalComponent implements OnInit {
     this.unsubscribe$.unsubscribe();
   }
   setForm(user: UserFullModel) {
-    console.log(user)
     const keys = Object.keys(this.form.controls);
     for (const key of keys) {
       this.form.controls[key].setValue((user as any)[key], {

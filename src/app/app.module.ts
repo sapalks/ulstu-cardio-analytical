@@ -28,6 +28,7 @@ import { MaterialModule } from './material';
     components.RecommendationComponent,
     components.QuestionnaireRouseComponent,
     components.QuestionnaireItemComponent,
+    components.QuestionnaireKopComponent,
 
 
     pipes.UserSearchPipe,

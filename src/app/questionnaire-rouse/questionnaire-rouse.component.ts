@@ -39,7 +39,6 @@ export class QuestionnaireRouseComponent implements OnInit {
   }
 
   onResponse(data: QuestionnaireAnswer) {
-    console.log(data);
     this.answers.push(data);
     if (this.haveNextQuestion()) {
       this.currentQuestion++;
