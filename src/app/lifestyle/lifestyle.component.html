@@ -49,7 +49,7 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-            <button mat-stroked-button color="primary" class="btn-loader">Определить</button>
+            <button mat-stroked-button color="primary" class="btn-loader" (click)="rouse()">Определить</button>
             <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Приверженность</mat-label>
                 <mat-select [value]="user.commitment" disabled>

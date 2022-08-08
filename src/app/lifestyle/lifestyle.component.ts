@@ -67,6 +67,12 @@ export class LifestyleComponent implements OnInit {
     });
   }
 
+  rouse() {
+    this.router.navigate(['user', this.userId, 'questionnaire-rouse'], {
+      queryParams: this.route.snapshot.queryParams
+    });
+  }
+
   setForm(user: UserFullModel) {
     console.log(user)
     const keys = Object.keys(this.form.controls);
