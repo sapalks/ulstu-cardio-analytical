@@ -33,6 +33,7 @@ import { MaterialModule } from './material';
 
     pipes.UserSearchPipe,
     pipes.YesNoPipe,
+    components.RatingComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { getRandomFullUserInfo, getRandomUser } from "./mock/utils";
-import { FullStore, UserBaseInfo, UserFullModel, UserStore } from "./store/store.model";
+import { getRandomFullUserInfo, getRandomRecommendation, getRandomUser } from "./mock/utils";
+import { FullStore, Recommendation, StatusRecommndationEnum, UserBaseInfo, UserFullModel, UserStore } from "./store/store.model";
 import { actions as adminActions } from './store/admin.slice';
-import { actions as userActions } from './store/user.slice';
+import { actions, actions as userActions } from './store/user.slice';
 import { catchError, delay, map, Observable, of } from "rxjs";
 import { users } from "./store/admin.selector";
 import { current, userId } from "./store/user.selector";
@@ -87,7 +87,17 @@ export class ApiService {
                 }
             }))
         }));
+    }
 
+    public loadRecommendation(userId: string): Observable<Recommendation[]> {
+        return this.getRecommendations(userId)
+    }
+
+    public sendtToDoctor(recommendationId: string): Observable<boolean> {
+        return this.setToDoctorApi(recommendationId);
+    }
+    public saveRecommendation(recommendation: Recommendation): Observable<boolean> {
+        return of(true).pipe(delay(300));
     }
 
 
@@ -112,4 +122,19 @@ export class ApiService {
     private getCardiovascularAgeApiCall(id: string): Observable<number> {
         return of(10).pipe(delay(300));
     }
+
+    private getRecommendations(userId: string): Observable<Recommendation[]> {
+        const recommendations = [
+            getRandomRecommendation(1, null, null),
+            getRandomRecommendation(2, StatusRecommndationEnum.APPROVED, 5),
+            getRandomRecommendation(3, null, null),
+            getRandomRecommendation(4, StatusRecommndationEnum.SAVED, 3),
+        ]
+        return of(recommendations).pipe(delay(300));
+    }
+
+    private setToDoctorApi(recommendationId: string): Observable<boolean> {
+        return of(true).pipe(delay(300));
+    }
+
 }

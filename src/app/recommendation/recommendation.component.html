@@ -1,4 +1,40 @@
 <app-user-left-column></app-user-left-column>
 <div class="wrapper">
-    <h1>WIP</h1>
+    <h1>Рекомендации</h1>
+    <p class="pre">
+        Система КардиоАналитик по введенным данным создала рекомендации по управлению вашим сердечно-сосудистым
+        здоровьем. Вы можете просмотреть, оценить, сохранить или отправить полную информацию о своем сердечно-сосудистом
+        здоровье и сгенерированные рекомендации курирующему врачу для коррекции и уточнения.
+    </p>
+    <div class="accordion">
+        <mat-accordion>
+            <mat-expansion-panel class="recommendation" hideToggle
+                *ngFor="let recommendation of (recommendations$|async); first as isFirst" [expanded]="isFirst">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Рекомендация #{{recommendation.number}} от {{(recommendation.createdAt*1000) | date:
+                        'dd.MM.yyyy'}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <span *ngIf="recommendation.status">
+                            {{getStatusDiscription(recommendation.status)}}
+                        </span>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p class="text">{{recommendation.text}}</p>
+                <div class="btns">
+                    <button mat-raised-button *ngIf="recommendation.canSendToDoctor" (click)="sendToDoctor(recommendation.id)">Отправить
+                        врачу</button>
+                    <button mat-raised-button *ngIf="!(recommendation.status||recommendation.showRating)"
+                        (click)="showRating(recommendation.id)">Оценить</button>
+                    <app-rating *ngIf="recommendation.status||recommendation.showRating"
+                        [disabled]="!!recommendation.status" [rating]="recommendation.rating"
+                        (change)="setRating(recommendation.id, $event)"></app-rating>
+                    <button mat-raised-button color="primary" *ngIf="!recommendation.status"
+                        (click)="save(recommendation)">Сохранить</button>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+    <app-loader *ngIf="loading" [global]="global"></app-loader>
 </div>

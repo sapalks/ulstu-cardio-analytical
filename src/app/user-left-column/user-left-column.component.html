@@ -5,13 +5,13 @@
         </p>
         <div class="info">
             <span class="field__name">Дата рождения:</span>
-            <span class="field__value">{{user.born | date: 'dd.MM.yyyy'}}</span>
+            <span class="field__value">{{(user.born * 1000) | date: 'dd.MM.yyyy'}}</span>
             <span class="field__name">Регион:</span>
             <span class="field__value">{{user.region}}</span>
             <span class="field__name">Класс пациента:</span>
             <span class="field__value">{{user.clientClass}}</span>
             <span class="field__name">Посл. обращение:</span>
-            <span class="field__value">{{user.lastRequestAt | date: 'dd.MM.yyyy'}}</span>
+            <span class="field__value">{{(user.lastRequestAt * 1000) | date: 'dd.MM.yyyy'}}</span>
             <span class="field__name">ФИО врача:</span>
             <span class="field__value">{{user.doctorFio}}</span>
         </div>

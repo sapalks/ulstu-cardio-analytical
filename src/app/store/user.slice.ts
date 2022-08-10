@@ -1,6 +1,6 @@
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { initialUserState, UserFullModel } from './store.model';
+import { initialUserState, Recommendation, UserFullModel } from './store.model';
 
 const userSlice = createSlice({
     name: 'user',
@@ -24,6 +24,30 @@ const userSlice = createSlice({
                 ...user
             } as UserFullModel
             state.current = newCurrent;
+        },
+        setRecommendation: (state, action: PayloadAction<{ recommendations: Recommendation[] }>) => {
+            state.recommendation = action.payload.recommendations;
+        },
+        updateRecommendation: (state, action: PayloadAction<{ recommendation: Pick<Recommendation, 'id'> & Partial<Recommendation> }>) => {
+            const rs = state.recommendation.reduce((arr, el) => {
+                if (el.id !== action.payload.recommendation.id) {
+                    return [...arr, el]
+                }
+                return [
+                    ...arr,
+                    {
+                        ...el,
+                        ...action.payload.recommendation
+                    }
+                ];
+            }, [] as (Recommendation & { showRating?: boolean })[])
+            state.recommendation = rs;
+        },
+        showRating: (state, action: PayloadAction<{ id: string }>) => {
+            const recommendation = state.recommendation.find(o => o.id === action.payload.id);
+            if (recommendation) {
+                recommendation.showRating = true;
+            }
         }
 
     }

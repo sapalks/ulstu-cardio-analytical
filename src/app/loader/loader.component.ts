@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-loader',
@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./loader.component.less']
 })
 export class LoaderComponent implements OnInit {
-
+  @Input()
+  global: boolean = false;
   constructor() { }
 
   ngOnInit(): void {

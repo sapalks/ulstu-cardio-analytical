@@ -17,3 +17,4 @@ export { RecommendationComponent } from './recommendation/recommendation.compone
 export { QuestionnaireItemComponent } from './questionnaire-item/questionnaire-item.component';
 export { QuestionnaireRouseComponent } from './questionnaire-rouse/questionnaire-rouse.component'
 export { QuestionnaireKopComponent } from './questionnaire-kop/questionnaire-kop.component';
+export { RatingComponent } from './rating/rating.component';

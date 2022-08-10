@@ -1,5 +1,6 @@
 <div class="container">
-    <div class="row">
+    <div class="row" [ngClass]="{global}">
+        <div *ngIf="global" class="back"></div>
         <div id="loader">
             <div class="dot"></div>
             <div class="dot"></div>

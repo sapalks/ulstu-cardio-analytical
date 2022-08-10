@@ -8,6 +8,7 @@ export interface UserStore {
     current: UserFullModel | null;
     id: string
     loading: boolean;
+    recommendation: (Recommendation & { showRating?: boolean })[];
 }
 
 
@@ -23,6 +24,7 @@ export const initialUserState: UserStore = {
     current: null,
     loading: false,
     id: '',
+    recommendation: [],
 }
 
 export enum SexEnum {
@@ -200,4 +202,20 @@ export interface QuestionnaireItem {
     index: number;
     text: string;
     answers: QuestionnaireAnswer[]
+}
+
+export enum StatusRecommndationEnum {
+    SAVED = 'saved',
+    SENDED_TO_DOCTOR = 'sended_to_doctor',
+    APPROVED = 'approved'
+}
+
+export interface Recommendation {
+    id: string;
+    createdAt: number;
+    number: number;
+    text: string;
+    rating: number | null;
+    status: StatusRecommndationEnum | null;
+    canSendToDoctor: boolean;
 }

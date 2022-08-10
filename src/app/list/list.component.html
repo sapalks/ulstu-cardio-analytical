@@ -10,22 +10,22 @@
     <div class="users">
         <div class="users__item" *ngFor="let user of users$ | async | ufilter:query" (click)="open(user.id)">
             <div class="users__item__main-info">
-                {{user.fio}} ({{user.born | date: 'dd.MM.yyyy'}})
+                {{user.fio}} ({{(user.born*1000) | date: 'dd.MM.yyyy'}})
             </div>
             <div class="users__item__additional-info">
                 <div class="users__item__column">
                     Регион: <b>{{user.region}}</b><br />
                 </div>
                 <div class="users__item__column">
-                    Даты последнего обращения: <b>{{user.lastRequestAt | date: 'hh:mm dd.MM.yyyy'}}</b><br/>
+                    Даты последнего обращения: <b>{{(user.lastRequestAt*1000) | date: 'hh:mm dd.MM.yyyy'}}</b><br />
                     Количество обращений: <b>{{user.requestCount}}</b>
                 </div>
                 <div class="users__item__column">
-                    Количество сгенерированных рекомендаций: <b>{{user.recommendationCount}}</b><br/>
+                    Количество сгенерированных рекомендаций: <b>{{user.recommendationCount}}</b><br />
                     Оценка сгенерированных рекомендаций: <b>{{user.recommendationAvgRating}}</b>
                 </div>
                 <div class="users__item__column">
-                    ФИО курирующего врача: <b>{{user.doctorFio}}</b><br/>
+                    ФИО курирующего врача: <b>{{user.doctorFio}}</b><br />
                     Почта курирующего врача: <b>{{user.doctorEmail}}</b>
                 </div>
             </div>

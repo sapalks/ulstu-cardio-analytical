@@ -1,0 +1,7 @@
+<div class="wrapper" [ngClass]="{disabled}" (mouseout)="leave()">
+    <mat-icon (click)="save(1)" (mouseover)="set(1)" [ngClass]="{'select':rating>=1}">star</mat-icon>
+    <mat-icon (click)="save(2)" (mouseover)="set(2)" [ngClass]="{'select':rating>=2}">star</mat-icon>
+    <mat-icon (click)="save(3)" (mouseover)="set(3)" [ngClass]="{'select':rating>=3}">star</mat-icon>
+    <mat-icon (click)="save(4)" (mouseover)="set(4)" [ngClass]="{'select':rating>=4}">star</mat-icon>
+    <mat-icon (click)="save(5)" (mouseover)="set(5)" [ngClass]="{'select':rating>=5}">star</mat-icon>
+</div>
