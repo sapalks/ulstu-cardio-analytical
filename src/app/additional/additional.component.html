@@ -3,7 +3,8 @@
     <h1>Дополнительно</h1>
     <p class="pre">
         Введите данные по дополнительным показателям, рекомендованные курирующим врачом, это важно для их оценки,
-        прогнозирования и контроля, а также для генерации персонализированных рекомендаций
+        прогнозирования и контроля, а также для генерации персонализированных рекомендаций. Если значения дополнительных
+        показателей сердечно-сосудистого здоровья неизвестны, введите значение 0.
     </p>
 
     <ng-container *ngIf="user$ | async as user">
@@ -30,8 +31,11 @@
             </mat-form-field>
             <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Результаты ЭКГ</mat-label>
-                <input matInput formControlName="ecg">
-                <span matSuffix>г/л</span>
+                <mat-select formControlName="ecg">
+                    <mat-option *ngFor="let item of ecg" [value]="item.value">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
             </mat-form-field>
             <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Высокочувствительный С-реактивный белок (кардио)</mat-label>
@@ -47,14 +51,14 @@
                 <input matInput formControlName="creatinine">
                 <span matSuffix>ммоль/л</span>
             </mat-form-field>
-            <mat-form-field class="full-width" appearance="outline">
+            <!-- <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Результаты УЗДМАГ. Наличие атеросклеротических бляшек</mat-label>
                 <mat-select formControlName="havePlaques">
                     <mat-option *ngFor="let item of yn" [value]="item.value">
                         {{item.name}}
                     </mat-option>
                 </mat-select>
-            </mat-form-field>
+            </mat-form-field> -->
         </div>
     </ng-container>
 </div>

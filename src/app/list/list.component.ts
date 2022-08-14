@@ -42,7 +42,7 @@ export class ListComponent implements OnInit {
   }
 
   open(id: string) {
-    this.router.navigate(['user', id], {
+    this.router.navigate(['user', id, 'profile'], {
       queryParams: this.route.snapshot.queryParams
     });
   }

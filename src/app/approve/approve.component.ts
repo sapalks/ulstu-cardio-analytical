@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { getCookie, setCookie } from '../utils';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-approve',
@@ -8,33 +6,16 @@ import { getCookie, setCookie } from '../utils';
   styleUrls: ['./approve.component.less']
 })
 export class ApproveComponent implements OnInit {
-  private readonly cookiesKey = 'ulstu-cardio-analytical-information-confirm';
-  userId: string = '';
+  @Output()
+  approved = new EventEmitter<boolean>();
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-  ) {
-    this.userId = this.route.snapshot.params['userId'];
-    const isApproved = getCookie(this.cookiesKey);
-    if (!isApproved) {
-      return;
-    }
-    this.gotoProfile();
-  }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
   submit() {
-    setCookie(this.cookiesKey, '1', 100);
-    this.gotoProfile();
-  }
-
-  gotoProfile() {
-    this.router.navigate(['user', this.userId, 'profile'], {
-      queryParams: this.route.snapshot.queryParams
-    });
+    this.approved.emit(true);
   }
 
 }

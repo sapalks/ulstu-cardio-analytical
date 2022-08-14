@@ -1,5 +1,6 @@
-<app-user-left-column></app-user-left-column>
-<div class="wrapper">
+<app-approve *ngIf="!isApproved" (approved)="onApprove()"></app-approve>
+<app-user-left-column *ngIf="isApproved"></app-user-left-column>
+<div *ngIf="isApproved" class="wrapper">
     <h1>Общая информация</h1>
     <p class="pre">
         Введите общую информацию о себе, это позволит автоматически создавать пациент-ориентированные рекомендации и
@@ -29,7 +30,7 @@
                 <input matInput formControlName="doctorEmail">
             </mat-form-field>
             <mat-form-field class="full-width" appearance="outline">
-                <mat-label>Предрасположенность к сердечно-сосудистым заболеваниям</mat-label>
+                <mat-label>Были ли у близких родственников инсульты, инфаркты, стенокардия?</mat-label>
                 <mat-select formControlName="cardiovascularDiseasePredisposition">
                     <mat-option *ngFor="let item of cdpFields" [value]="item.value">
                         {{item.name}}
@@ -37,7 +38,7 @@
                 </mat-select>
             </mat-form-field>
             <mat-form-field class="full-width" appearance="outline">
-                <mat-label>Прием статинов</mat-label>
+                <mat-label>Принимаете ли статины</mat-label>
                 <mat-select formControlName="statinsTaking">
                     <mat-option *ngFor="let item of yn" [value]="item.value">
                         {{item.name}}

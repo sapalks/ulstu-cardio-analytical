@@ -39,8 +39,8 @@ export enum FamilyStatusEnum {
 }
 
 export enum InSocialEventsEnum {
-    ONE = 'one',
-    MORE = 'more',
+    YES = 'yes',
+    NO = 'no',
 }
 
 export enum PhysicalActivityEnum {
@@ -52,8 +52,6 @@ export enum PhysicalActivityEnum {
 export enum WorkStatusEnum {
     WORKERD = 'worked',
     RETIRED = 'retired',
-    UNEMPLOYED = 'unemployed',
-    LOOKING = 'looking',
 }
 
 export enum SymptomsOfAnginaPectorisEnum {
@@ -77,6 +75,11 @@ export enum InfarctionOrInsultEnum {
     NO = 'no',
     INFARCTION = 'infarction',
     INSULT = 'insult'
+}
+
+export enum ECGEnum {
+    HAVE_DEVIATIONS = 'have deviations',
+    NO_DEVIATIONS = 'no deviations'
 }
 
 export type UserFullModel = UserAdditionalModel & UserBaseInfo & UserCalcInfo;
@@ -135,7 +138,7 @@ export interface UserAdditionalModel {
     // Липопротеин
     lipoprotein?: number | undefined;
     // Результаты ЭКГ
-    ecg: string;
+    ecg: ECGEnum | undefined;
     // Высокочувствительный С-реактивный белок (кардио)
     protein?: number | undefined;
     // Коэффициент атерогенности
@@ -143,7 +146,7 @@ export interface UserAdditionalModel {
     // Креатинин
     creatinine?: number | undefined;
     // Результаты УЗДМАГ. Наличие атеросклеротических бляшек
-    havePlaques?: boolean | undefined;
+    // havePlaques?: boolean | undefined;
 
     // предрасположенность к сердечно-сосудистым заболеваниям
     cardiovascularDiseasePredisposition: CardiovascularDiseasePredispositionEnum;

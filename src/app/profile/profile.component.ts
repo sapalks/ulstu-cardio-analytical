@@ -4,8 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { debounceTime, Observable, Subject, takeUntil } from 'rxjs';
 import { ApiService } from '../api.service';
-import { CardiovascularDiseasePredispositionEnum, FullStore, InfarctionOrInsultEnum, UserFullModel, UserStore } from '../store/store.model';
+import { CardiovascularDiseasePredispositionEnum, FullStore, InfarctionOrInsultEnum, UserFullModel } from '../store/store.model';
 import { loading } from '../store/user.selector';
+import { getCookie, setCookie } from '../utils';
 
 @Component({
   selector: 'app-profile',
@@ -13,10 +14,12 @@ import { loading } from '../store/user.selector';
   styleUrls: ['./profile.component.less']
 })
 export class ProfileComponent implements OnInit {
+  private readonly cookiesKey = 'ulstu-cardio-analytical-information-confirm';
 
   user$: Observable<UserFullModel | null>;
   userId: string;
   loading$: Observable<boolean>;
+  isApproved = false;
   private unsubscribe$: Subject<void> = new Subject();
 
   form: FormGroup;
@@ -28,6 +31,7 @@ export class ProfileComponent implements OnInit {
     private store: Store<FullStore>,
     private readonly fb: FormBuilder,
   ) {
+    this.isApproved = !!getCookie(this.cookiesKey);
     this.userId = this.route.snapshot.paramMap.get('userId')!;
     this.user$ = this.api.getUser();
     this.loading$ = this.store.select(loading);
@@ -69,6 +73,11 @@ export class ProfileComponent implements OnInit {
     this.unsubscribe$.unsubscribe();
   }
 
+  onApprove() {
+    setCookie(this.cookiesKey, '1', 100);
+    this.isApproved = true;
+  }
+
   setForm(user: UserFullModel) {
     const keys = Object.keys(this.form.controls);
     for (const key of keys) {
@@ -82,11 +91,11 @@ export class ProfileComponent implements OnInit {
 
   cdpFields = [
     {
-      name: 'Были СС заболевания у ближайших родственников в возрасте до 70 лет',
+      name: 'Были СС заболевания у мужчин до 55 лет или у женщин до 65 лет',
       value: CardiovascularDiseasePredispositionEnum.HAVE_DISEASE_IN_FAMILY
     },
     {
-      name: 'Генетическая предрасположенность',
+      name: 'Да',
       value: CardiovascularDiseasePredispositionEnum.GENETIC_PREDISPOSITION
     },
     {

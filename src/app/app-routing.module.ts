@@ -4,7 +4,7 @@ import * as components from './components';
 
 export const routes: Routes = [
   { path: 'home', component: components.ListComponent },
-  { path: 'user/:userId', component: components.ApproveComponent },
+  // { path: 'user/:userId', component: components.ApproveComponent },
   { path: 'user/:userId/profile', component: components.ProfileComponent },
   { path: 'user/:userId/baseline', component: components.BaselineComponent },
   { path: 'user/:userId/lifestyle', component: components.LifestyleComponent },

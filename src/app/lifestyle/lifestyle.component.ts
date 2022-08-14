@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { debounceTime, Observable, Subject, takeUntil } from 'rxjs';
 import { ApiService } from '../api.service';
-import { CommitmentEnum, FamilyStatusEnum, FullStore, InSocialEventsEnum, PhysicalActivityEnum, SexEnum, SymptomsOfAnginaPectorisEnum, UserFullModel, WorkStatusEnum } from '../store/store.model';
+import { CommitmentEnum, ECGEnum, FamilyStatusEnum, FullStore, InSocialEventsEnum, PhysicalActivityEnum, SexEnum, SymptomsOfAnginaPectorisEnum, UserFullModel, WorkStatusEnum } from '../store/store.model';
 import { loading } from '../store/user.selector';
 
 @Component({
@@ -92,6 +92,10 @@ export class LifestyleComponent implements OnInit {
 
   fsMan = [
     {
+      name: 'Не определено',
+      value: undefined
+    },
+    {
       name: 'Женат',
       value: FamilyStatusEnum.MARRIED
     },
@@ -106,6 +110,10 @@ export class LifestyleComponent implements OnInit {
   ];
 
   fsWoman = [
+    {
+      name: 'Не определено',
+      value: undefined
+    },
     {
       name: 'Замужем',
       value: FamilyStatusEnum.MARRIED
@@ -122,12 +130,12 @@ export class LifestyleComponent implements OnInit {
 
   se = [
     {
-      name: 'Один раз в неделю',
-      value: InSocialEventsEnum.ONE,
+      name: 'Да',
+      value: InSocialEventsEnum.YES,
     },
     {
-      name: 'Более одного раза в неделю',
-      value: InSocialEventsEnum.MORE,
+      name: 'Нет',
+      value: InSocialEventsEnum.NO,
     },
   ];
 
@@ -148,6 +156,10 @@ export class LifestyleComponent implements OnInit {
 
   w = [
     {
+      name: 'Не определенно',
+      value: undefined
+    },
+    {
       name: 'Работает',
       value: WorkStatusEnum.WORKERD
     },
@@ -155,23 +167,15 @@ export class LifestyleComponent implements OnInit {
       name: 'На пенсии',
       value: WorkStatusEnum.RETIRED
     },
-    {
-      name: 'Безработный',
-      value: WorkStatusEnum.UNEMPLOYED
-    },
-    {
-      name: 'В поиске работы',
-      value: WorkStatusEnum.LOOKING
-    },
   ];
 
   sap = [
     {
-      name: 'Необходимо записаться к кардиологу',
+      name: 'Выявлены, рекомендуется записаться к кардиологу',
       value: SymptomsOfAnginaPectorisEnum.GOTO_CARDIOLOGIST
     },
     {
-      name: 'Нет симптомов',
+      name: 'Не выявлены',
       value: SymptomsOfAnginaPectorisEnum.NO_SYMPTOMS
     },
   ];

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { debounceTime, Observable, Subject, takeUntil } from 'rxjs';
 import { ApiService } from '../api.service';
-import { FullStore, UserFullModel } from '../store/store.model';
+import { ECGEnum, FullStore, UserFullModel } from '../store/store.model';
 import { loading } from '../store/user.selector';
 
 @Component({
@@ -41,7 +41,7 @@ export class AdditionalComponent implements OnInit {
       protein: [0, [Validators.required, Validators.min(0.1), Validators.max(12)]],
       atherogenicCoefficient: [0, [Validators.required, Validators.min(0.1), Validators.max(8)]],
       creatinine: [0, [Validators.required, Validators.min(20), Validators.max(500)]],
-      havePlaques: [false, [Validators.required,]],
+      // havePlaques: [false, [Validators.required,]],
     });
 
     for (const key of Object.keys(this.form.controls)) {
@@ -83,6 +83,17 @@ export class AdditionalComponent implements OnInit {
       name: 'Нет',
       value: false
     },
-  ]
+  ];
+
+  ecg = [
+    {
+      name: 'Есть отклонения',
+      value: ECGEnum.HAVE_DEVIATIONS
+    },
+    {
+      name: 'Нет отклонений',
+      value: ECGEnum.NO_DEVIATIONS
+    }
+  ];
 
 }

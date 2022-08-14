@@ -42,7 +42,7 @@
                 </mat-select>
             </mat-form-field>
             <mat-form-field class="full-width" appearance="outline">
-                <mat-label>Симптомы стенокардии</mat-label>
+                <mat-label>Симптомы стенокардии (модифицированный опросник Роуза для выявления стенокардии)</mat-label>
                 <mat-select [value]="user.symptomsOfAnginaPectoris" disabled>
                     <mat-option *ngFor="let item of sap" [value]="item.value">
                         {{item.name}}
@@ -51,7 +51,7 @@
             </mat-form-field>
             <button mat-stroked-button color="primary" class="btn-loader" (click)="rouse()">Определить</button>
             <mat-form-field class="full-width" appearance="outline">
-                <mat-label>Приверженность</mat-label>
+                <mat-label>Приверженность (опросник оценки приверженности лечению (КОП-25)) </mat-label>
                 <mat-select [value]="user.commitment" disabled>
                     <mat-option *ngFor="let item of c" [value]="item.value">
                         {{item.name}}
