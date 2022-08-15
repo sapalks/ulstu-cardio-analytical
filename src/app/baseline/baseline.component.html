@@ -64,18 +64,6 @@
                 <input matInput formControlName="cholesterol">
                 <span matSuffix>ммоль/л</span>
             </mat-form-field>
-            <mat-form-field class="full-width" appearance="outline">
-                <mat-label>Риск сердечно-сосудистых событий в течение 10 лет по шкале SCORE</mat-label>
-                <input matInput [value]="user.riskOfCardiovascularEvents??0" disabled>
-            </mat-form-field>
-            <button mat-stroked-button color="primary" class="btn-loader" [disabled]="riskOfCardiovascularEventsLoading"
-                (click)="getRiskOfCardiovascularEvents()">Определить</button>
-            <mat-form-field class="full-width" appearance="outline">
-                <mat-label>Ваш идеальный «сердечно-сосудистый возраст»</mat-label>
-                <input matInput [value]="user.cardiovascularAge??0" disabled>
-            </mat-form-field>
-            <button mat-stroked-button color="primary" class="btn-loader" [disabled]="cardiovascularAgeLoading"
-                (click)="getCardiovascularAge()">Определить</button>
         </div>
     </ng-container>
     <div class="btn-next">

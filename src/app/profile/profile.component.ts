@@ -91,7 +91,7 @@ export class ProfileComponent implements OnInit {
 
   cdpFields = [
     {
-      name: 'Были СС заболевания у мужчин до 55 лет или у женщин до 65 лет',
+      name: 'У мужчин до 55 лет (у женщин до 65 лет)',
       value: CardiovascularDiseasePredispositionEnum.HAVE_DISEASE_IN_FAMILY
     },
     {
@@ -131,7 +131,7 @@ export class ProfileComponent implements OnInit {
   ];
 
   next() {
-    this.router.navigate(['user', this.userId, 'baseline'], {
+    this.router.navigate(['user', this.userId, 'lifestyle'], {
       queryParams: this.route.snapshot.queryParams
     });
   }

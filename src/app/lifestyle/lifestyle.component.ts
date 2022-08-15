@@ -62,7 +62,7 @@ export class LifestyleComponent implements OnInit {
     this.unsubscribe$.unsubscribe();
   }
   next() {
-    this.router.navigate(['user', this.userId, 'additional'], {
+    this.router.navigate(['user', this.userId, 'baseline'], {
       queryParams: this.route.snapshot.queryParams
     });
   }

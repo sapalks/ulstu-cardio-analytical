@@ -21,9 +21,6 @@ export class BaselineComponent implements OnInit {
   form: FormGroup;
   imt: number | 'не определенно' = 'не определенно';
 
-  riskOfCardiovascularEventsLoading = false;
-  cardiovascularAgeLoading = false;
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -66,22 +63,8 @@ export class BaselineComponent implements OnInit {
     this.unsubscribe$.unsubscribe();
   }
   next() {
-    this.router.navigate(['user', this.userId, 'lifestyle'], {
+    this.router.navigate(['user', this.userId, 'additional'], {
       queryParams: this.route.snapshot.queryParams
-    });
-  }
-
-  getRiskOfCardiovascularEvents() {
-    this.riskOfCardiovascularEventsLoading = true;
-    this.api.getRiskOfCardiovascularEvents(this.userId).subscribe(() => {
-      this.riskOfCardiovascularEventsLoading = false;
-    });
-  }
-
-  getCardiovascularAge() {
-    this.cardiovascularAgeLoading = true;
-    this.api.getCardiovascularAge(this.userId).subscribe(() => {
-      this.cardiovascularAgeLoading = false;
     });
   }
 

@@ -74,6 +74,20 @@ export class AdditionalComponent implements OnInit {
     }
   }
 
+  riskOfCardiovascularEventsLoading = false;
+  getRiskOfCardiovascularEvents() {
+    this.riskOfCardiovascularEventsLoading = true;
+    this.api.getRiskOfCardiovascularEvents(this.userId).subscribe(() => {
+      this.riskOfCardiovascularEventsLoading = false;
+    });
+  }
+  cardiovascularAgeLoading=false
+  getCardiovascularAge() {
+    this.cardiovascularAgeLoading = true;
+    this.api.getCardiovascularAge(this.userId).subscribe(() => {
+      this.cardiovascularAgeLoading = false;
+    });
+  }
   yn = [
     {
       name: 'Да',

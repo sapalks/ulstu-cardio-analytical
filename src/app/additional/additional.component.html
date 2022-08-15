@@ -1,6 +1,6 @@
 <app-user-left-column></app-user-left-column>
 <div class="wrapper">
-    <h1>Дополнительно</h1>
+    <h1>Оценка сердечно-сосудистого риска</h1>
     <p class="pre">
         Введите данные по дополнительным показателям, рекомендованные курирующим врачом, это важно для их оценки,
         прогнозирования и контроля, а также для генерации персонализированных рекомендаций. Если значения дополнительных
@@ -51,6 +51,18 @@
                 <input matInput formControlName="creatinine">
                 <span matSuffix>ммоль/л</span>
             </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Ваш идеальный «сердечно-сосудистый возраст»</mat-label>
+                <input matInput [value]="user.cardiovascularAge??0" disabled>
+            </mat-form-field>
+            <button mat-stroked-button color="primary" class="btn-loader" [disabled]="cardiovascularAgeLoading"
+                (click)="getCardiovascularAge()">Определить</button>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Риск сердечно-сосудистых событий в течение 10 лет по шкале SCORE</mat-label>
+                <input matInput [value]="user.riskOfCardiovascularEvents??0" disabled>
+            </mat-form-field>
+            <button mat-stroked-button color="primary" class="btn-loader" [disabled]="riskOfCardiovascularEventsLoading"
+                (click)="getRiskOfCardiovascularEvents()">Определить</button>
             <!-- <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Результаты УЗДМАГ. Наличие атеросклеротических бляшек</mat-label>
                 <mat-select formControlName="havePlaques">
