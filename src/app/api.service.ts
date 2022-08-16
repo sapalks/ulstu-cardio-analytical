@@ -8,13 +8,17 @@ import { catchError, delay, map, Observable, of } from "rxjs";
 import { users } from "./store/admin.selector";
 import { current, userId } from "./store/user.selector";
 import { MatSnackBar } from '@angular/material/snack-bar'
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+
+export const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
     lastUserId: string = '';
     public constructor(
         private readonly store: Store<FullStore>,
-        private _snackBar: MatSnackBar
+        private _snackBar: MatSnackBar,
+        private http: HttpClient,
     ) {
         this.store.select(userId).subscribe(userId => {
             if (userId && this.lastUserId !== userId) {
@@ -137,4 +141,13 @@ export class ApiService {
         return of(true).pipe(delay(300));
     }
 
+    private exampleGet() {
+        return this.http.get(`https://some.url/tasks/session/order/update`, { headers })
+            .pipe(
+                map((response: any) => {
+                    return response;
+                }),
+                catchError(handleError(this.notification, `Error message`)),
+            );
+    }
 }
