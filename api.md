@@ -250,3 +250,74 @@ userId:string
     errorText:''
 }
 ```
+
+# Получение рекомендаций
+
+GET, параметры
+
+```
+userId:string
+```
+
+Ответ:
+
+```js
+
+export enum StatusRecommndationEnum {
+    SAVED = 'saved',
+    SENDED_TO_DOCTOR = 'sended_to_doctor',
+    APPROVED = 'approved'
+}
+
+{
+    status:'ok'|'error',
+    body:{
+        id: string;
+        createdAt: number;
+        number: number;
+        text: string;
+        rating: number | null;
+        status: StatusRecommndationEnum | null;
+        canSendToDoctor: boolean;
+    }[],
+    errorText:''
+}
+```
+
+# Отправка рекомендации курирующему врачу
+
+GET, параметры
+
+```
+recommendationId:string
+```
+
+Ответ:
+
+```js
+{
+    status:'ok'|'error',
+    errorText:''
+}
+```
+
+# Сохранение рекомендации
+
+POST,
+Тело запроса, формат JSON
+
+```js
+{
+  id: string
+  rating: number
+}
+```
+
+т.е. в теле передаю id пользователя и набор полей, которые надо изменить
+Ответ
+
+```js
+{
+  status: 'ok' | 'error'
+}
+```

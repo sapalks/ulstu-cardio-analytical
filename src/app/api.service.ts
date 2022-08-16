@@ -141,13 +141,30 @@ export class ApiService {
         return of(true).pipe(delay(300));
     }
 
-    private exampleGet() {
-        return this.http.get(`https://some.url/tasks/session/order/update`, { headers })
+    private exampleGet(id: string) {
+        return this.http.get(`https://some.url/tasks/session/order/update`, { headers, params: { id } })
             .pipe(
                 map((response: any) => {
                     return response;
                 }),
-                catchError(handleError(this.notification, `Error message`)),
+                catchError(_err => {
+                    const defaultValue = {};
+                    this._snackBar.open('Произошла ошибка при обращении на сервер, попробуйте обновить страницу или обратиться к разработчикам', 'ок')
+                    return of(defaultValue)
+                }),
+            );
+    }
+    private examplePost(body: any) {
+        return this.http.post(`https://some.url/tasks/session/order/update`, body, { headers })
+            .pipe(
+                map((response: any) => {
+                    return response;
+                }),
+                catchError(_err => {
+                    const defaultValue = {};
+                    this._snackBar.open('Произошла ошибка при обращении на сервер, попробуйте обновить страницу или обратиться к разработчикам', 'ок')
+                    return of(defaultValue)
+                }),
             );
     }
 }
