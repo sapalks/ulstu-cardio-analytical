@@ -1,0 +1,8 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: .
+    ports:
+      - 3055:80
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
